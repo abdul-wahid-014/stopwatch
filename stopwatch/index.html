@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            #main{
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+                align-items: center;
+                flex-direction: column;
+            }
+            button{
+                padding: 25px;
+                color: black;
+                background-color: aqua;
+                font-size: 25px;
+                border-radius: 25px;
+            }
+            button:hover{
+                padding: 24px;
+                cursor: pointer;
+            }
+            span{
+                font-size: 70px;
+                padding: 15px;
+                position: relative;
+                margin-left: 30px;
+            }
+            h1{
+                position: absolute;
+                top:150px;
+                font-size: 40px;
+            }
+        </style>
+<body>
+    
+    <div id="main">
+        <div id="num">
+            <span id="hr">00 </span>
+            <span id="min">00 </span>
+            <span id="sec">00 </span>
+            <span id="msec">00 </span>
+        </div>
+        <br>
+        <div id="btn">
+            <button onclick="startbtn()" id="startbtn">Start</button>
+            <button onclick="stopbtn()" >Stop</button>
+            <button onclick="resetbtn()" >Reset</button>
+        </div>
+    </div>
+
+    <script>
+        var interval;
+        var hr=document.getElementById('hr');
+        var min=document.getElementById('min');
+        var sec=document.getElementById('sec');
+        var msec=document.getElementById('msec');
+        var hour=0;
+        var minute=0;
+        var second=0;
+        var millisecond=0;
+
+        function startbtn(){
+            interval=setInterval(function(){
+            millisecond++;
+            msec.innerHTML=millisecond;
+            if(msec.innerHTML==100){
+            second++;
+            sec.innerHTML=second;
+            millisecond=0;
+        }
+        if(second==60){
+            minute++;
+            min.innerHTML=minute;
+            second=0;
+            sec.innerHTML=second;
+        }
+        if(minute==60){
+            hour++;
+            hr.innerHTML=hour;
+            second=0;
+            sec.innerHTML=second;
+            minute=0;
+            min.innerHTML=minute;
+        }
+        },10);
+
+        
+        var startbtn = document.getElementById('startbtn').disabled=true;
+    }
+        function stopbtn(){
+            clearInterval(interval);
+            var startbtn = document.getElementById('startbtn').disabled=false;
+
+        }
+        function resetbtn(){
+            hr.innerHTML=00;
+            min.innerHTML=00;
+            sec.innerHTML=00;
+            msec.innerHTML=00;
+        }
+         
+    </script>
+</body>
+</html>
